@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <style>
+        .container{
+            display: flex;
+            flex-direction: column;
+            background-color: rgb(222 213 243);
+            width: 100vw;
+            /* height: 100vh; */
+            position: absolute;
+            /* justify-content: center; */
+            align-items: center;
+        }
+        a {
+            text-decoration: none;
+            background-color: #5fadda;
+            border: 2px solid white;
+            border-radius: 9px;
+            color: white;
+            padding: 6px 11px;
+            width: 88px;
+        }
+        #row{
+            display: flex;
+    border: 1px solid #f1dcd1;
+    border-radius: 32px;
+    width: 80vw;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    background-color: #60f19ac9;
+        }
+        #col-30{
+            width: 33%;
+            margin: 12px;
+            color: white;
+        }
+        img{
+            width: 230px;
+            height: 230px;
+            border-radius: 5px;
+        }
+        #cart{
+            background-color: #b5b7b7;
+    /* border: 2px solid black; */
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+        }
+        button{
+            background-color: #5fadda;
+            border: 2px solid white;
+            border-radius: 9px;
+            color: white;
+            padding: 6px 11px;
+        }
+        #total-order{
+            width: 80vw;
+    height: 100px;
+    /* border: 2px solid red; */
+    border-radius: 12px;
+    margin: 24px;
+    background-color: azure;
+        }
+    </style>
+</head>
+
+<body>
+    <div class='container'>
+        <div id="cart"><h1> Cart</h1></div>
+        {% for item in items %}
+        <div>
+        <div id="row">
+            <div id="col-30"><img  src="{{item.product.image.url}}" alt=""></div>
+            <div id="col-30"><h1>{{item.product.name}}</h1> </div>
+            <div id="col-30"><h1>{{item.product.price}}/ item * {{item.quantity}}</h1><h1>={{item.get_cost}} rupees</h1></div>
+        </div>  
+    
+
+    
+        <div ><div><a href="{% url 'remove' item.product.id %}"><span style="margin: 32px;">Remove</span> </a></div></div>
+    </div>
+        {% endfor %}
+        <div id="total-order" ><div style="float: right;margin: 34px;"><p style="margin-right: 16px; display: inline;"> Order Total : {{consumer.total_order_cost}} Rupees</p><button>Checkout</button></div> </div>
+    </div>
+</body>
+
+</html>

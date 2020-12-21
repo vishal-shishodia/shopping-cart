@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listing</title>
+    <style>
+        #container{
+            display: flex;
+            flex-direction: column;
+            background-color: rgb(222 213 243);
+            width: 100vw;
+            /* height: 100vh; */
+            position: absolute;
+            /* justify-content: center; */
+            align-items: center;
+        }
+        #row{
+            display: flex;
+    border: 1px solid #f1dcd1;
+    border-radius: 32px;
+    width: 80vw;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    background-color: #60f19ac9;
+        }
+        #col-30{
+            width: 33%;
+            margin: 12px;
+            color: white;
+        }
+        img{
+            width: 230px;
+            height: 230px;
+            border-radius: 5px;
+        }
+        #buy-item{
+            margin-bottom:12px ;
+            width: 80vw;
+        }
+        #btn{
+            background-color: #5fadda;
+            border: 2px solid white;
+            border-radius: 9px;
+            color: white;
+            padding: 6px 11px;
+        }
+        button {
+            background-color: #f1c835;
+            border: 2px solid white;
+            border-radius: 9px;
+            color: white;
+            padding: 6px 11px;
+            /* width: 88px; */
+        }
+        a{
+            text-decoration: none;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+    {% for product in products %}
+        <div>
+    <div id="row">
+        <div id="col-30"><img  src="{{product.image.url}}" alt=""></div>
+        <div id="col-30"><h1>{{product.name}}</h1> </div>
+        <div id="col-30"><h1>{{product.price}} rupees/ item</h1> </div>
+    </div>  
+</div>
+
+<div id="buy-item">
+    <div style="display: inline; float: left;"><button><a href="{% url 'add' product.id %}">Add to Cart</a></button></div>
+    <div style="display: inline; float: right; "><button id="btn">Buy Now</button></div>
+    
+</div>
+    {% endfor %}
+</div>
+</body>
+</html>
